@@ -1,10 +1,4 @@
 ---
-blogpost: true
-date: 2023-08-04
-tags: [dask, query optimizer, performance]
-author: Patrick Hoefler
----
----
 layout: post
 title: High Level Query Optimization in Dask
 author: JPatrick Hoefler
