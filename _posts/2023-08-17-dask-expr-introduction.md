@@ -7,7 +7,6 @@ theme: twitter
 canonical_url: https://blog.coiled.io/blog/dask-expr-introduction.html
 ---
 
-# High Level Query Optimization in Dask
 
 <a href="/images/dask_expr/dask-expr-introduction-title.png">
 <img src="/images/dask_expr/dask-expr-introduction-title.png"
