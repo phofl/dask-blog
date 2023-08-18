@@ -7,10 +7,9 @@ theme: twitter
 canonical_url: https://blog.coiled.io/blog/dask-expr-introduction.html
 ---
 
-<a href="/images/dask_expr/dask-expr-introduction-title.png">
-<img src="/images/dask_expr/dask-expr-introduction-title.png"
-     width="70%"
-     alt=""></a>
+<figure class="align-center">
+<img alt="Expression tree encoded by dask-expr" src="/images/dask_expr/dask-expr-introduction-title.png" style="width: 70%;"/>
+</figure>
 
 ## Introduction
 
