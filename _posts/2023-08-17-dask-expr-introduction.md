@@ -1,7 +1,7 @@
 ---
 layout: post
 title: High Level Query Optimization in Dask
-author: JPatrick Hoefler
+author: Patrick Hoefler
 tags: [dask, query optimizer, performance]
 theme: twitter
 canonical_url: https://blog.coiled.io/blog/dask-expr-introduction.html
