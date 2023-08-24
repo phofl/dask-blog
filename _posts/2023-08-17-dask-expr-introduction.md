@@ -7,6 +7,8 @@ theme: twitter
 canonical_url: https://blog.coiled.io/blog/dask-expr-introduction.html
 ---
 
+_This work was engineered and supported by [Coiled](https://coiled.io/?utm_source=dask-blog&utm_medium=dask-expr) and [NVIDIA](https://www.nvidia.com/). Thanks to [Patrick Hoefler](https://github.com/phofl) and [Rick Zamora](https://github.com/rjzamora), in particular. Original version of this post appears on [blog.coiled.io](https://blog.coiled.io/blog/dask-expr-introduction.html?utm_source=dask-blog&utm_medium=dask-expr)_
+
 <figure class="align-center">
 <img alt="Expression tree encoded by dask-expr" src="/images/dask_expr/dask-expr-introduction-title.png" style="width: 70%;"/>
 </figure>
