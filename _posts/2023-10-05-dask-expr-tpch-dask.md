@@ -5,7 +5,6 @@ tags: [dask, query optimizer, performance, benchmarks]
 author: JPatrick Hoefler
 theme: twitter
 canonical_url: https://blog.coiled.io/blog/dask-expr-tpch-dask.html
-
 ---
 
 # TPC-H Benchmarks for Query Optimization with Dask Expressions
@@ -15,15 +14,15 @@ canonical_url: https://blog.coiled.io/blog/dask-expr-tpch-dask.html
      width="70%"
      alt=""></a>
 
-[Dask-expr](https://github.com/dask-contrib/dask-expr) is an ongoing effort to add a 
+[Dask-expr](https://github.com/dask-contrib/dask-expr) is an ongoing effort to add a
 [logical query optimization layer](https://medium.com/coiled-hq/high-level-query-optimization-in-dask-995640564ed7) to Dask DataFrames.
-We now have the first benchmark results to share that were run against the current DataFrame 
+We now have the first benchmark results to share that were run against the current DataFrame
 implementation.
 
-Dask-expr is up to 3 times faster and more memory efficient in its current state than the status quo. 
+Dask-expr is up to 3 times faster and more memory efficient in its current state than the status quo.
 This is a very promising result for our future development efforts.
 
-# Results 
+## Results
 
 We are comparing Dask 2023.09.02 with the main branch of Dask-expr. Both implementations
 will use the [P2P shuffling algorithm](https://medium.com/coiled-hq/shuffling-large-data-at-constant-memory-in-dask-bb683e92d70b). The results were produced on 100GB of data, e.g. scale
@@ -34,7 +33,7 @@ will use the [P2P shuffling algorithm](https://medium.com/coiled-hq/shuffling-la
      width="70%"
      alt="Runtime on a per-query basis of Dask DataFrame and Dask-expr"></a>
 
-We can see that Dask-expr performs better on every single query, up to a 3-times improvement 
+We can see that Dask-expr performs better on every single query, up to a 3-times improvement
 compared to the status quo.
 
 Dask-expr reorders the query that was given by the user to only execute things that
@@ -54,10 +53,10 @@ for users that struggle with memory pressure on their clusters.
 
 We did another run on 1TB of data, which showed similar results but with a few notable differences:
 
-- Getting Dask-expr to compute the results successfully was very easy. 20 workers very sufficient to 
+- Getting Dask-expr to compute the results successfully was very easy. 20 workers very sufficient to
   compute the results, which is the same number of workers as we used for the 100GB benchmarks.
 - The original version needed a bigger cluster with 50 workers and with 32GB memory each.
-- Some queries didn't complete the original version at all, because there were memory spikes on 
+- Some queries didn't complete the original version at all, because there were memory spikes on
   single clusters. Dask-expr was able to complete all queries successfully.
 
 Summarizing, getting these queries to complete was significantly easier with Dask-expr.
@@ -65,18 +64,18 @@ Summarizing, getting these queries to complete was significantly easier with Das
 These results show us that we are on the right course and motivates
 us to improve the performance of Dask-expr further. There is still a lot of untapped potential.
 
-# About the benchmarks
+## About the benchmarks
 
 The TPC-H benchmarks are a set of queries that are commonly used to compare performance of
-different databases. Thus, they are very ``merge`` and ``groupby`` heavy. Historically, the current
-implementation didn't perform very well on these types of queries. The 
-[new P2P shuffling algorithm](https://medium.com/coiled-hq/shuffling-large-data-at-constant-memory-in-dask-bb683e92d70b) that was introduced earlier this year and now Dask-expr improves 
+different databases. Thus, they are very `merge` and `groupby` heavy. Historically, the current
+implementation didn't perform very well on these types of queries. The
+[new P2P shuffling algorithm](https://medium.com/coiled-hq/shuffling-large-data-at-constant-memory-in-dask-bb683e92d70b) that was introduced earlier this year and now Dask-expr improves
 the performance of Dask a lot.
 
 These queries only capture a small part of the [Dask DataFrame API](https://docs.dask.org/en/stable/dataframe.html) but are helpful to compare
 performance.
 
-The full implementation of all queries is available [here](https://github.com/coiled/benchmarks/blob/main/tests/benchmarks/test_tpch.py). 
+The full implementation of all queries is available [here](https://github.com/coiled/benchmarks/blob/main/tests/benchmarks/test_tpch.py).
 A single example query is copied below, so you can get a sense of what they look like:
 
 ```python
@@ -102,7 +101,7 @@ total.reset_index().compute().sort_values(["revenue"], ascending=False).head(10)
 ]
 ```
 
-# What's next
+## What's next
 
 We have some additional steps planned over the next couple of weeks. These include:
 
@@ -112,11 +111,11 @@ We have some additional steps planned over the next couple of weeks. These inclu
 We are hoping that we can get additional insights into our implementation and are hoping to identify
 bottlenecks.
 
-# Can I use Dask-expr?
+## Can I use Dask-expr?
 
 Though Dask-expr is still under active development, the project is in a state where users can
 try it out. The API coverage is pretty good already. We are still adding new
-optimizations, so performance will improve in the future. 
+optimizations, so performance will improve in the future.
 
 You can try it out with:
 
@@ -124,11 +123,11 @@ You can try it out with:
 pip install dask-expr
 ```
 
-We don't expect that there exists any hard-to-find-bugs. We did not 
+We don't expect that there exists any hard-to-find-bugs. We did not
 reimplement any of the algorithms from Dask DataFrame, so we don't expect hard to identify issues
 or an unexpected loss of data.
 
-# Conclusion
+## Conclusion
 
 Dask Expressions provides a faster and more memory efficient implementation of Dask DataFrames.
 The project is still under active development, but it already outperforms the current status quo
